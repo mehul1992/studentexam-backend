@@ -45,7 +45,7 @@ student-exams-backend/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/<your-username>/student-exams-backend.git
+git clone https://github.com/mehul1992/studentexam-backend
 cd student-exams-backend
 ```
 
@@ -99,7 +99,3 @@ python manage.py test
 - **SOLID**: Designed with clean architecture principles for long-term maintainability.  
 - **DRY**: Reusable modules and minimal code duplication.  
 - **KISS**: Simple, straightforward code to ensure clarity and reduce complexity.  
-
-
-## 📄 License
-This project is licensed under the MIT License.
