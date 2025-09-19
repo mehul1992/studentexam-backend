@@ -5,18 +5,15 @@ from .serializers import ExamQuestionSerializer
 
 
 class QuestionListView(AuthenticatedAPIView):
-
+    
     def get(self, request):
         try:
-            # Get exam_id from query parameters
             exam_id = request.GET.get('exam_id')
             if not exam_id:
                 return self.error_response('exam_id is required', 400)
             
-            # Get exam using service
             exam = self._get_exam_by_id(exam_id)
             
-            # Get exam questions using optimized query
             exam_questions = (
                 ExamQuestion.objects
                 .select_related('question')
@@ -24,7 +21,6 @@ class QuestionListView(AuthenticatedAPIView):
                 .order_by('created_at')
             )
             
-            # Serialize exam questions data
             questions_data = ExamQuestionSerializer.to_dict_list(exam_questions)
             
             return self.success_response({'results': questions_data})
@@ -35,7 +31,6 @@ class QuestionListView(AuthenticatedAPIView):
             return self.handle_exception(e)
     
     def _get_exam_by_id(self, exam_id: str) -> Exam:
-        """Get an active exam by ID."""
         try:
             return Exam.objects.get(id=exam_id, is_active=True)
         except Exam.DoesNotExist:
