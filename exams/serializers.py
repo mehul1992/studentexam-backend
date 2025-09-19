@@ -1,16 +1,11 @@
-"""
-Serializers for exam-related data transformation.
-"""
 from typing import Dict, Any, List
 from .models import Exam
 
 
 class ExamSerializer:
-    """Serializer for Exam model data."""
     
     @staticmethod
     def to_dict(exam: Exam) -> Dict[str, Any]:
-        """Convert Exam instance to dictionary."""
         return {
             'id': str(exam.id),
             'exam_name': exam.exam_name,
@@ -28,5 +23,4 @@ class ExamSerializer:
     
     @classmethod
     def to_dict_list(cls, exams: List[Exam]) -> List[Dict[str, Any]]:
-        """Convert list of Exam instances to list of dictionaries."""
         return [cls.to_dict(exam) for exam in exams]
